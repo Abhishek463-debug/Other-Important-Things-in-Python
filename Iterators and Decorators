@@ -1,0 +1,66 @@
+iterator = iter([1,2,3,4,5,6,7,8,9])
+
+while True:
+    try:
+        print(next(iterator), end = " ")
+        print(*range(10), sep ="" , end = " ")
+    except:
+        print()
+        break
+print("Printed all values!")
+
+def hello_world(function_name):
+    def inner(*args, **kwargs):
+        print("Beginning this function! Hello World!!!")
+        returned_value = function_name(*args, **kwargs)
+        print("Ending this function now, let's get those results, then!!")
+        return returned_value
+    return inner
+
+@hello_world
+def sum(x,y,z, a= 10, b= 25):
+    return x+y+z+a+b
+
+print("Sum: ", str(sum(10,20,30)))
+
+def decorator(*args, **kwargs):
+    print("Inside decorator")
+     
+    def inner(func):
+         
+        # code functionality here
+        print("Inside inner function")
+        print("I like", kwargs['like'])
+         
+        func()
+         
+    # returning inner function   
+    return inner
+ 
+@decorator(like = "geeksforgeeks")
+def my_func():
+    print("Inside actual function")
+
+import time
+def timeit(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(str((end-start)*1000000) + " microseconds.")
+        return result
+    return wrapper
+
+@timeit
+def calc_squares(l):
+    for i in range(len(l)):
+        l[i] = l[i]**2
+    return l
+@timeit
+def calc_cube(l):
+    for i in range(len(l)):
+        l[i] = l[i]**3
+    return l
+
+print(calc_squares([1,2,3,4,5]))
+print(calc_cube([20, 30, 40, 50, 60]))
