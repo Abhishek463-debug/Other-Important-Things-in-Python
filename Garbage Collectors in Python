@@ -1,0 +1,15 @@
+#USES REFERENCE COUNTING ALGORITHM
+import weakref
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+p1 = Person("Abhishek", 24)
+print(hex(id(p1)))
+r = weakref.ref(p1) #Garbage collector doesn't consider weak references at all. Like weak reference is invisible.
+print(r)
+p1 = None
+print(r)
+print("Garbage collection collected garbage immediately after it became garbage. I.e., the object no longer had any references.")
