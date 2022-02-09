@@ -1,12 +1,11 @@
 #USES REFERENCE COUNTING ALGORITHM
 import weakref
 class Person:
-    def __init__(self, name, age):
+    def __init__(self, name):
         self.name = name
-        self.age = age
 
 
-p1 = Person("Abhishek", 24)
+p1 = Person("Abhishek")
 print(hex(id(p1)))
 r = weakref.ref(p1) #Garbage collector doesn't consider weak references at all. Like weak reference is invisible.
 print(r)
